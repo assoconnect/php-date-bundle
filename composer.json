@@ -1,0 +1,17 @@
+{
+    "name": "assoconnect/php-date-bundle",
+    "description": "Symfony bundle for assoconnect/php-date library",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require-dev": {
+        "assoconnect/php-date": "^1.0-dev",
+        "phpunit/phpunit": "^8.5",
+        "symfony/phpunit-bridge": "^5.0",
+        "doctrine/dbal": "^2.10",
+        "symfony/serializer": "^5.0"
+    },
+    "require": {
+        "php": "^7.2",
+        "symfony/framework-bundle": "^4.2"
+    }
+}
