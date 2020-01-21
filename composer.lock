@@ -1668,12 +1668,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/assoconnect/php-date.git",
-                "reference": "cc60bbaf64ae0ba92dec27d88ff7cc51d4c7806e"
+                "reference": "69beb54a644e20797327aa1d431e1e5b75e2cbf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/assoconnect/php-date/zipball/cc60bbaf64ae0ba92dec27d88ff7cc51d4c7806e",
-                "reference": "cc60bbaf64ae0ba92dec27d88ff7cc51d4c7806e",
+                "url": "https://api.github.com/repos/assoconnect/php-date/zipball/69beb54a644e20797327aa1d431e1e5b75e2cbf7",
+                "reference": "69beb54a644e20797327aa1d431e1e5b75e2cbf7",
                 "shasum": ""
             },
             "require-dev": {
@@ -1698,7 +1698,7 @@
                 "date",
                 "php"
             ],
-            "time": "2020-01-21T10:04:46+00:00"
+            "time": "2020-01-21T16:24:15+00:00"
         },
         {
             "name": "doctrine/cache",

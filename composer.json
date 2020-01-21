@@ -3,6 +3,16 @@
     "description": "Symfony bundle for assoconnect/php-date library",
     "type": "symfony-bundle",
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AssoConnect\\PHPDateBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AssoConnect\\PHPDateBundle\\Tests\\": "tests/"
+        }
+    },
     "require-dev": {
         "assoconnect/php-date": "^1.0-dev",
         "phpunit/phpunit": "^8.5",

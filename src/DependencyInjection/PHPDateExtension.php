@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AssoConnect\PHPDateBundle\DependencyInjection;
 
-use AssoConnect\PHPDate\Doctrine\DBAL\Types\AbsoluteDateType;
+use AssoConnect\PHPDateBundle\Doctrine\DBAL\Types\AbsoluteDateType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;

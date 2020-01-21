@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace AssoConnect\PHPDateBundle\Tests\Doctrine\DBAL\Types;
 
 use AssoConnect\PHPDate\AbsoluteDate;
-use AssoConnect\PHPDate\Doctrine\DBAL\Types\AbsoluteDateType;
+use AssoConnect\PHPDateBundle\Doctrine\DBAL\Types\AbsoluteDateType;
 use Doctrine\DBAL\Types\ConversionException;
 
 use function date_default_timezone_set;

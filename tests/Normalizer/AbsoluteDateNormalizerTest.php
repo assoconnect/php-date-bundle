@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AssoConnect\PHPDate\Tests\Normalizer;
+namespace AssoConnect\PHPDateBundle\Tests\Normalizer;
 
 use AssoConnect\PHPDate\AbsoluteDate;
-use AssoConnect\PHPDate\Normalizer\AbsoluteDateNormalizer;
+use AssoConnect\PHPDateBundle\Normalizer\AbsoluteDateNormalizer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
