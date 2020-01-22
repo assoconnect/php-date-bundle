@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4ad7b6d4eae10312aee82e67fac2b22",
+    "content-hash": "fdd499590c70b3cdb6871249fc83a9da",
     "packages": [
         {
             "name": "psr/cache",
@@ -1664,16 +1664,16 @@
     "packages-dev": [
         {
             "name": "assoconnect/php-date",
-            "version": "v1.0.0.x-dev",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/assoconnect/php-date.git",
-                "reference": "69beb54a644e20797327aa1d431e1e5b75e2cbf7"
+                "reference": "b8731bb119494f3dc3607d6d31651c4d6b35c6a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/assoconnect/php-date/zipball/69beb54a644e20797327aa1d431e1e5b75e2cbf7",
-                "reference": "69beb54a644e20797327aa1d431e1e5b75e2cbf7",
+                "url": "https://api.github.com/repos/assoconnect/php-date/zipball/b8731bb119494f3dc3607d6d31651c4d6b35c6a6",
+                "reference": "b8731bb119494f3dc3607d6d31651c4d6b35c6a6",
                 "shasum": ""
             },
             "require-dev": {
@@ -1698,7 +1698,7 @@
                 "date",
                 "php"
             ],
-            "time": "2020-01-21T16:24:15+00:00"
+            "time": "2020-01-22T09:27:50+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -3558,9 +3558,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "assoconnect/php-date": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

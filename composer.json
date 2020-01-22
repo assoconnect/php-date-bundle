@@ -14,7 +14,7 @@
         }
     },
     "require-dev": {
-        "assoconnect/php-date": "^1.0-dev",
+        "assoconnect/php-date": "^1.0",
         "phpunit/phpunit": "^8.5",
         "symfony/phpunit-bridge": "^5.0",
         "doctrine/dbal": "^2.10",
