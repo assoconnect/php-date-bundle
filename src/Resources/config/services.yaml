@@ -1,4 +1,4 @@
 services:
   AssoConnect\PHPDateBundle\Normalizer\AbsoluteDateNormalizer:
     tags:
-    - 'serializer.normalizer'
+      - 'serializer.normalizer'
