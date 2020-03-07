@@ -25,7 +25,7 @@ class AbsoluteDateNormalizerTest extends TestCase
 
     public function testSupportsNormalization()
     {
-        $this->assertTrue($this->normalizer->supportsNormalization(new AbsoluteDate()));
+        $this->assertTrue($this->normalizer->supportsNormalization(new AbsoluteDate('1970-01-01')));
     }
 
     public function testNormalize()
