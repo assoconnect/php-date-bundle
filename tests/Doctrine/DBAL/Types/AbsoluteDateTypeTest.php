@@ -24,7 +24,7 @@ class DateTest extends BaseDateTypeTestCase
 
     protected function getInstanceOfPHPValue()
     {
-        return new AbsoluteDate();
+        return new AbsoluteDate('1970-01-01');
     }
 
     public function testDateConvertsToPHPValue(): void
