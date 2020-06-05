@@ -74,7 +74,7 @@ EOT;
         $format = $context[self::FORMAT_KEY] ?? null;
 
         if ('' === $data || null === $data) {
-            throw new NotNormalizableValueException(self::EMPTY_STRING_OR_NULL_EXCEPTION_MESSAGE);
+            return;
         }
 
         try {
