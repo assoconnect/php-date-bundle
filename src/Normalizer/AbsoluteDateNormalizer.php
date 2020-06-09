@@ -59,11 +59,6 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
         return $data instanceof AbsoluteDate;
     }
 
-    public const EMPTY_STRING_OR_NULL_EXCEPTION_MESSAGE = <<<EOT
-The data is either an empty string or null.
-You should pass a string that can be parsed with the passed format or a valid Y-m-d string.
-EOT;
-
     /**
      * {@inheritdoc}
      *
@@ -71,14 +66,8 @@ EOT;
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
-        $format = $context[self::FORMAT_KEY] ?? null;
-
-        if ('' === $data || null === $data) {
-            throw new NotNormalizableValueException(self::EMPTY_STRING_OR_NULL_EXCEPTION_MESSAGE);
-        }
-
         try {
-            return new AbsoluteDate($data, $format);
+            return '' === $data || null === $data ? null : new AbsoluteDate($data, $context[self::FORMAT_KEY] ?? null);
         } catch (\Exception $e) {
             throw new NotNormalizableValueException($e->getMessage(), $e->getCode(), $e);
         }

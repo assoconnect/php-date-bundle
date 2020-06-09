@@ -86,20 +86,6 @@ class AbsoluteDateNormalizerTest extends TestCase
         $this->normalizer->denormalize('invalid date', AbsoluteDate::class);
     }
 
-    public function testDenormalizeNullThrowsException()
-    {
-        $this->expectException(NotNormalizableValueException::class);
-        $this->expectExceptionMessage(AbsoluteDateNormalizer::EMPTY_STRING_OR_NULL_EXCEPTION_MESSAGE);
-        $this->normalizer->denormalize(null, AbsoluteDate::class);
-    }
-
-    public function testDenormalizeEmptyStringThrowsException()
-    {
-        $this->expectException(NotNormalizableValueException::class);
-        $this->expectExceptionMessage(AbsoluteDateNormalizer::EMPTY_STRING_OR_NULL_EXCEPTION_MESSAGE);
-        $this->normalizer->denormalize('', AbsoluteDate::class);
-    }
-
     public function testDenormalizeFormatMismatchThrowsException()
     {
         $this->expectException(NotNormalizableValueException::class);
