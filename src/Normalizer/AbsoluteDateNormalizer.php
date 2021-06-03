@@ -66,8 +66,10 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
+        $dateTimeFormat = $context[self::FORMAT_KEY] ?? $this->defaultContext[self::FORMAT_KEY];
+
         try {
-            return '' === $data || null === $data ? null : new AbsoluteDate($data, $context[self::FORMAT_KEY] ?? null);
+            return '' === $data || null === $data ? null : new AbsoluteDate($data, $dateTimeFormat);
         } catch (\Exception $e) {
             throw new NotNormalizableValueException($e->getMessage(), $e->getCode(), $e);
         }

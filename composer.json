@@ -20,7 +20,7 @@
     "require": {
         "php": "^7.4",
         "symfony/framework-bundle": "^4.2|^5.0",
-        "assoconnect/php-date": "^2.3",
+        "assoconnect/php-date": "^2.5",
         "doctrine/dbal": "^2.10",
         "symfony/serializer": "^5.0"
     }
