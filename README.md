@@ -8,5 +8,5 @@ The PHPDateBundle add the support of PHP AbsoluteDate object (see [AssoConnect\P
 Features included:
 
 - `AbsoluteDate` normalizer as a Service
-- `AbsoluteDate` Doctrine type
- 
+- `AbsoluteDateType` Doctrine type for `AbsoluteDate` objects
+- `DateTimeZoneType` Doctrine type for `DateTimeZone` objects
