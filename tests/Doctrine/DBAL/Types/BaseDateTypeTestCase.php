@@ -17,13 +17,11 @@ use function date_default_timezone_set;
 abstract class BaseDateTypeTestCase extends TestCase
 {
     /** @var AbstractPlatform|MockObject */
-    protected $platform;
+    protected AbstractPlatform $platform;
 
-    /** @var Type */
-    protected $type;
+    protected Type $type;
 
-    /** @var string */
-    private $currentTimezone;
+    private string $currentTimezone;
 
     /**
      * {@inheritDoc}
