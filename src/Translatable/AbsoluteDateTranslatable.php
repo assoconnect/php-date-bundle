@@ -20,7 +20,7 @@ class AbsoluteDateTranslatable implements TranslatableInterface
 
     public function __construct(
         AbsoluteDate $absoluteDate,
-        int $dateType = \IntlDateFormatter::MEDIUM,
+        int $dateType = \IntlDateFormatter::SHORT,
         string $pattern = ''
     ) {
         $this->absoluteDate = $absoluteDate;
