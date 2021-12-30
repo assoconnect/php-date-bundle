@@ -19,6 +19,6 @@ class AbsoluteDateTranslatableTest extends TestCase
 
         $translatable = new AbsoluteDateTranslatable($date, \IntlDateFormatter::SHORT);
         $this->assertSame('07/09/1987', $translatable->trans($translator, 'fr_FR'));
-        $this->assertSame('9/7/87', $translatable->trans($translator, 'en_US'));
+        $this->assertSame('09/07/1987', $translatable->trans($translator, 'en_US'));
     }
 }

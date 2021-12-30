@@ -45,6 +45,13 @@ class AbsoluteDateTranslatable implements TranslatableInterface
                 null,
                 $this->pattern
             );
+
+            if (false !== strpos($locale, '_US')) {
+                //A more used format
+                $pattern = self::$formatters[$key]->getPattern();
+                $pattern = str_replace(['yy', 'M', 'd'], ['y', 'MM', 'dd'], $pattern);
+                self::$formatters[$key]->setPattern($pattern);
+            }
         }
 
         return self::$formatters[$key]->format($this->absoluteDate->startsAt($this->timezone));
