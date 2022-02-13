@@ -13,66 +13,57 @@ use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 class AbsoluteDateNormalizerTest extends TestCase
 {
-    /**
-     * @var AbsoluteDateNormalizerTest
-     */
-    private $normalizer;
+    private AbsoluteDateNormalizer $normalizer;
 
     protected function setUp(): void
     {
         $this->normalizer = new AbsoluteDateNormalizer();
     }
 
-    public function testSupportsNormalization()
+    public function testSupportsNormalization(): void
     {
-        $this->assertTrue($this->normalizer->supportsNormalization(new AbsoluteDate('1970-01-01')));
+        self::assertTrue($this->normalizer->supportsNormalization(new AbsoluteDate('1970-01-01')));
     }
 
-    public function testNormalize()
+    public function testNormalize(): void
     {
-        $this->assertEquals('2016-01-01', $this->normalizer->normalize(new AbsoluteDate('2016-01-01')));
+        self::assertEquals('2016-01-01', $this->normalizer->normalize(new AbsoluteDate('2016-01-01')));
     }
 
-    public function testNormalizeUsingFormatPassedInContext()
+    public function testNormalizeUsingFormatPassedInContext(): void
     {
         $normalizedValue = $this->normalizer->normalize(
             new AbsoluteDate('2016-01-01'),
             null,
             [AbsoluteDateNormalizer::FORMAT_KEY => 'Y']
         );
-        $this->assertEquals('2016', $normalizedValue);
+        self::assertEquals('2016', $normalizedValue);
     }
 
-    public function testNormalizeUsingFormatPassedInConstructor()
-    {
-        $normalizer = new AbsoluteDateNormalizer([AbsoluteDateNormalizer::FORMAT_KEY => 'y']);
-        $this->assertEquals('16', $normalizer->normalize(new AbsoluteDate('2016-01-01')));
-    }
-
-    public function testNormalizeInvalidObjectThrowsException()
+    public function testNormalizeInvalidObjectThrowsException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('The object must be an instance of "%s".', AbsoluteDate::class));
         $this->normalizer->normalize(new \stdClass());
     }
 
-    public function testSupportsDenormalization()
+    public function testSupportsDenormalization(): void
     {
-        $this->assertTrue($this->normalizer->supportsDenormalization('2016-01-01', AbsoluteDate::class));
-        $this->assertFalse($this->normalizer->supportsDenormalization('foo', 'Bar'));
+        self::assertTrue($this->normalizer->supportsDenormalization('2016-01-01', AbsoluteDate::class));
+        self::assertFalse($this->normalizer->supportsDenormalization('foo', 'Bar'));
     }
 
-    public function testDenormalize()
+    public function testDenormalize(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             new AbsoluteDate('2016-01-01'),
             $this->normalizer->denormalize('2016-01-01', AbsoluteDate::class)
         );
     }
 
-    public function testDenormalizeUsingFormatPassedInContext()
+    public function testDenormalizeUsingFormatPassedInContext(): void
     {
-        $this->assertEquals(
+        self::assertEquals(
             new AbsoluteDate('2016-01-01'),
             $this->normalizer->denormalize('2016.01.01', AbsoluteDate::class, null, [
                 AbsoluteDateNormalizer::FORMAT_KEY => 'Y.m.d|'
@@ -80,13 +71,13 @@ class AbsoluteDateNormalizerTest extends TestCase
         );
     }
 
-    public function testDenormalizeInvalidDataThrowsException()
+    public function testDenormalizeInvalidDataThrowsException(): void
     {
         $this->expectException(UnexpectedValueException::class);
         $this->normalizer->denormalize('invalid date', AbsoluteDate::class);
     }
 
-    public function testDenormalizeFormatMismatchThrowsException()
+    public function testDenormalizeFormatMismatchThrowsException(): void
     {
         $this->expectException(NotNormalizableValueException::class);
         $this->normalizer->denormalize('2016/01/01', AbsoluteDate::class, null, [

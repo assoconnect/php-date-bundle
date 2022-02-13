@@ -17,16 +17,16 @@ class DateTimeZoneTypeTest extends TestCase
         $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
 
         // With null
-        $this->assertNull($type->convertToDatabaseValue(null, $platform));
-        $this->assertNull($type->convertToPHPValue(null, $platform));
+        self::assertNull($type->convertToDatabaseValue(null, $platform));
+        self::assertNull($type->convertToPHPValue(null, $platform));
 
         // With a timezone
         $name = 'Europe/Paris';
         $timezone = new \DateTimeZone($name);
-        $this->assertSame($name, $type->convertToDatabaseValue($timezone, $platform));
+        self::assertSame($name, $type->convertToDatabaseValue($timezone, $platform));
         $phpValue = $type->convertToPHPValue($name, $platform);
-        $this->assertInstanceof(\DateTimeZone::class, $phpValue);
-        $this->assertSame($name, $phpValue->getName());
+        self::assertInstanceOf(\DateTimeZone::class, $phpValue);
+        self::assertSame($name, $phpValue->getName());
     }
 
     public function testConversionToDatabaseThrows(): void

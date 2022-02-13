@@ -15,7 +15,10 @@ class AbsoluteDateTranslatable implements TranslatableInterface
     private string $pattern;
     private \DateTimeZone $timezone;
 
-    /** Cache */
+    /**
+     * Cache
+     * @var array<\IntlDateFormatter>
+     */
     private static array $formatters = [];
 
     public function __construct(
@@ -31,7 +34,7 @@ class AbsoluteDateTranslatable implements TranslatableInterface
 
     public function trans(TranslatorInterface $translator, string $locale = null): string
     {
-        if (!$locale) {
+        if (null === $locale) {
             $locale = $translator->getLocale();
         }
 
@@ -54,6 +57,12 @@ class AbsoluteDateTranslatable implements TranslatableInterface
             }
         }
 
-        return self::$formatters[$key]->format($this->absoluteDate->startsAt($this->timezone));
+        $formatted = self::$formatters[$key]->format($this->absoluteDate->startsAt($this->timezone));
+
+        if (false === $formatted) {
+            throw new \RuntimeException(sprintf('Cannot format %s', $this->absoluteDate->__toString()));
+        }
+
+        return $formatted;
     }
 }
