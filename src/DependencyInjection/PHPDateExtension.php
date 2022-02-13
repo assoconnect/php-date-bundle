@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class PHPDateExtension extends Extension
 {
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $container->prependExtensionConfig('doctrine', [
             'dbal' => [
@@ -26,8 +26,10 @@ class PHPDateExtension extends Extension
         ]);
     }
 
-
-    public function load(array $configs, ContainerBuilder $container)
+    /**
+     * @param mixed[] $configs
+     */
+    public function load(array $configs, ContainerBuilder $container): void
     {
         // Loading config.yml file
         $loader = new YamlFileLoader(

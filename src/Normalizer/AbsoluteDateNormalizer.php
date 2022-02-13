@@ -19,25 +19,13 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 {
     public const FORMAT_KEY = 'datetime_format';
 
-    private $defaultContext = [
-        self::FORMAT_KEY => AbsoluteDate::DEFAULT_DATE_FORMAT,
-    ];
-
-    private static $supportedTypes = [
-        AbsoluteDate::class => true,
-    ];
-
-    public function __construct(array $defaultContext = [])
-    {
-        $this->defaultContext = array_merge($this->defaultContext, $defaultContext);
-    }
-
     /**
      * {@inheritdoc}
      *
+     * @param mixed[] $context
      * @throws InvalidArgumentException
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = []): string
     {
         if (!$object instanceof AbsoluteDate) {
             throw new InvalidArgumentException(sprintf(
@@ -46,7 +34,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
             ));
         }
 
-        $dateTimeFormat = $context[self::FORMAT_KEY] ?? $this->defaultContext[self::FORMAT_KEY];
+        $dateTimeFormat = $context[self::FORMAT_KEY] ?? AbsoluteDate::DEFAULT_DATE_FORMAT;
 
         return $object->format($dateTimeFormat);
     }
@@ -54,7 +42,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null): bool
     {
         return $data instanceof AbsoluteDate;
     }
@@ -62,11 +50,12 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
     /**
      * {@inheritdoc}
      *
+     * @param mixed[] $context
      * @throws NotNormalizableValueException
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize($data, string $type, string $format = null, array $context = []): ?AbsoluteDate
     {
-        $dateTimeFormat = $context[self::FORMAT_KEY] ?? $this->defaultContext[self::FORMAT_KEY];
+        $dateTimeFormat = $context[self::FORMAT_KEY] ?? AbsoluteDate::DEFAULT_DATE_FORMAT;
 
         try {
             return '' === $data || null === $data ? null : new AbsoluteDate($data, $dateTimeFormat);
@@ -78,14 +67,11 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null): bool
     {
-        return isset(self::$supportedTypes[$type]);
+        return AbsoluteDate::class === $type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasCacheableSupportsMethod(): bool
     {
         return __CLASS__ === \get_class($this);
