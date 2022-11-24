@@ -21,7 +21,7 @@ class AbsoluteDateType extends DateType
     /**
      * {@inheritdoc}
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {
             return $value;
@@ -37,7 +37,7 @@ class AbsoluteDateType extends DateType
     /**
      * {@inheritdoc}
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?AbsoluteDate
     {
         if ($value === null || $value instanceof AbsoluteDate) {
             return $value;
@@ -58,7 +58,7 @@ class AbsoluteDateType extends DateType
     /**
      * @inheritdoc
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
