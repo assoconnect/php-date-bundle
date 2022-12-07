@@ -13,3 +13,7 @@ Date-related features based on [AbsoluteDate](https://github.com/assoconnect/php
   - `AbsoluteDateTranslatable`
 - Twig Filter
   - `AbsoluteDateExtension`
+```
+# 02/06/2016
+{{ myAbsoluteDate|date }}
+```
