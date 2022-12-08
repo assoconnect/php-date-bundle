@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Twig;
+namespace App\Tests\Twig\Extension;
 
 use App\Twig\AbsoluteDateExtension;
 use AssoConnect\PHPDate\AbsoluteDate;
