@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Twig\Extension;
+namespace AssoConnect\PHPDateBundle\Twig\Extension;
 
 use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\PHPDateBundle\Translatable\AbsoluteDateTranslatable;
