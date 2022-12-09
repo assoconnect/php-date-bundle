@@ -12,7 +12,7 @@ use Symfony\Component\Translation\Translator;
 
 class AbsoluteDateExtensionTest extends TestCase
 {
-    public function testFilterUserDefaultLocal()
+    public function testFilterUserDefaultLocal(): void
     {
         $translator = $this->createMock(Translator::class);
         $translator->expects(self::once())
