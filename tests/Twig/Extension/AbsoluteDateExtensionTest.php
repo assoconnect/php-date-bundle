@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AssoConnect\PHPDateBundle\Tests\Twig\Extension;
 
-use App\Twig\AbsoluteDateExtension;
+use AssoConnect\PHPDateBundle\Twig\Extension\AbsoluteDateExtension;
 use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\PHPDateBundle\Translatable\AbsoluteDateTranslatable;
 use PHPUnit\Framework\TestCase;
