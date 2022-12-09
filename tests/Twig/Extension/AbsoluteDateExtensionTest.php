@@ -7,18 +7,17 @@ namespace AssoConnect\PHPDateBundle\Tests\Twig\Extension;
 use App\Twig\AbsoluteDateExtension;
 use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\PHPDateBundle\Translatable\AbsoluteDateTranslatable;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Translation\Translator;
 
-class AbsoluteDateExtensionTest extends KernelTestCase
+class AbsoluteDateExtensionTest extends TestCase
 {
-
-    /** @group functional */
     public function testFilterUserDefaultLocal()
     {
-        self::bootKernel();
-        $translator = self::getContainer()->get(TranslatorInterface::class);
-        $translator->setLocale('fr_FR');
+        $translator = $this->createMock(Translator::class);
+        $translator->expects(self::once())
+            ->method('getLocale')
+            ->willReturn('fr_FR');
 
         $absoluteDate = new AbsoluteDate('2023-03-24');
         $translatable = new AbsoluteDateTranslatable($absoluteDate);
