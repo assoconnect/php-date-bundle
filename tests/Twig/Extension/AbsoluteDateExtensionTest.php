@@ -26,4 +26,12 @@ class AbsoluteDateExtensionTest extends TestCase
 
         self::assertSame($translatable->trans($translator, 'fr_FR'), $result);
     }
+
+    public function testFilterName(): void
+    {
+        $extension = new AbsoluteDateExtension($this->createMock(Translator::class));
+        $filters = $extension->getFilters();
+
+        self::assertSame('date', $filters[0]->getName());
+    }
 }
