@@ -26,5 +26,4 @@ class AbsoluteDateExtensionTest extends TestCase
 
         self::assertSame($translatable->trans($translator, 'fr_FR'), $result);
     }
-
 }
