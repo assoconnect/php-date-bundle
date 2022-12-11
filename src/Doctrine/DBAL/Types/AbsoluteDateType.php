@@ -13,7 +13,7 @@ class AbsoluteDateType extends DateType
 {
     public const TYPE = 'date_absolute';
 
-    public function getName()
+    public function getName(): string
     {
         return self::TYPE;
     }
