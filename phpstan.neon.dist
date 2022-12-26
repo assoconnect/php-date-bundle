@@ -4,5 +4,5 @@ parameters:
         - tests/
 
 includes:
-    - vendor/assoconnect/php-quality-config/extension.neon
-    - vendor/assoconnect/php-quality-config/rules.neon
+    - vendor/assoconnect/php-quality-config/phpstan.extension.neon
+    - vendor/assoconnect/php-quality-config/phpstan.rules.neon
