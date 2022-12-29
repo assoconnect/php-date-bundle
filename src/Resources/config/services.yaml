@@ -2,7 +2,7 @@ services:
   AssoConnect\PHPDateBundle\Normalizer\AbsoluteDateNormalizer:
     tags:
       - 'serializer.normalizer'
-  AssoConnect\PHPDateBundle\Twig\AbsoluteDateExtension:
+  AssoConnect\PHPDateBundle\Twig\Extension\AbsoluteDateExtension:
     arguments:
       - '@translator'
     tags:
