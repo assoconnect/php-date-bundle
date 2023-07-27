@@ -22,7 +22,7 @@ class AbsoluteDateExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('absolutDate', [$this, 'formatAbsoluteDate']),
+            new TwigFilter('absoluteDate', [$this, 'formatAbsoluteDate']),
         ];
     }
 

@@ -17,10 +17,10 @@ class PHPDateExtension extends Extension
         $container->prependExtensionConfig('doctrine', [
             'dbal' => [
                 'types' => [
-                    'date_absolute' => AbsoluteDateType::class,
+                    'absolute_date' => AbsoluteDateType::class,
                 ],
                 'mapping_types' => [
-                    'date_absolute' => 'string',
+                    'absolute_date' => 'string',
                 ],
             ]
         ]);

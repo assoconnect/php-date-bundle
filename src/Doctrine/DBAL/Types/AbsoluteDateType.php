@@ -7,20 +7,22 @@ namespace AssoConnect\PHPDateBundle\Doctrine\DBAL\Types;
 use AssoConnect\PHPDate\AbsoluteDate;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Doctrine\DBAL\Types\DateType;
+use Doctrine\DBAL\Types\Type;
 
-class AbsoluteDateType extends DateType
+class AbsoluteDateType extends Type
 {
-    public const TYPE = 'date_absolute';
+    public const NAME = 'absolute_date';
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return $platform->getDateTypeDeclarationSQL($column);
+    }
 
     public function getName(): string
     {
-        return self::TYPE;
+        return self::NAME;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {
@@ -34,9 +36,6 @@ class AbsoluteDateType extends DateType
         throw ConversionException::conversionFailedInvalidType($value, $this->getName(), ['null', AbsoluteDate::class]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?AbsoluteDate
     {
         if ($value === null || $value instanceof AbsoluteDate) {
@@ -55,9 +54,6 @@ class AbsoluteDateType extends DateType
         }
     }
 
-    /**
-     * @inheritdoc
-     */
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
