@@ -10,9 +10,8 @@ use Doctrine\DBAL\Types\Type;
 
 class DateTimeZoneType extends Type
 {
-    /**
-     * @inheritdoc
-     */
+    public const NAME = 'datetimezone';
+
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         $fieldDeclaration['length'] = 30;
@@ -21,20 +20,14 @@ class DateTimeZoneType extends Type
 
     public function getName(): string
     {
-        return 'datetimezone';
+        return self::NAME;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {
@@ -48,9 +41,6 @@ class DateTimeZoneType extends Type
         throw ConversionException::conversionFailedInvalidType($value, $this->getName(), ['null', 'DateTimeZone']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?\DateTimeZone
     {
         if ($value === null || $value instanceof \DateTimeZone) {

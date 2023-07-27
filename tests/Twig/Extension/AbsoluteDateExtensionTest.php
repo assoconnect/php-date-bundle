@@ -32,6 +32,6 @@ class AbsoluteDateExtensionTest extends TestCase
         $extension = new AbsoluteDateExtension($this->createMock(Translator::class));
         $filters = $extension->getFilters();
 
-        self::assertSame('absolutDate', $filters[0]->getName());
+        self::assertSame('absoluteDate', $filters[0]->getName());
     }
 }
