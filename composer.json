@@ -16,10 +16,10 @@
     "require-dev": {
         "symfony/contracts": "^2.4",
         "symfony/translation": "^4.2|^5.0",
-        "ext-intl": "*",
         "assoconnect/php-quality-config": "^1.0"
     },
     "require": {
+        "ext-intl": "*",
         "php": "^7.4|^8.0",
         "symfony/framework-bundle": "^4.2|^5.0",
         "assoconnect/php-date": "^2.8",

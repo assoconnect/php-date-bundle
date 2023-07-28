@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace AssoConnect\PHPDateBundle\Translatable;
 
 use AssoConnect\PHPDate\AbsoluteDate;
+use DateTimeZone;
+use IntlDateFormatter;
 use Symfony\Contracts\Translation\TranslatableInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -13,23 +15,23 @@ class AbsoluteDateTranslatable implements TranslatableInterface
     private AbsoluteDate $absoluteDate;
     private int $dateType;
     private string $pattern;
-    private \DateTimeZone $timezone;
+    private DateTimeZone $timezone;
 
     /**
      * Cache
-     * @var array<\IntlDateFormatter>
+     * @var IntlDateFormatter[]
      */
     private static array $formatters = [];
 
     public function __construct(
         AbsoluteDate $absoluteDate,
-        int $dateType = \IntlDateFormatter::SHORT,
+        int $dateType = IntlDateFormatter::SHORT,
         string $pattern = ''
     ) {
         $this->absoluteDate = $absoluteDate;
         $this->dateType = $dateType;
         $this->pattern = $pattern;
-        $this->timezone = new \DateTimeZone('UTC');
+        $this->timezone = new DateTimeZone('UTC');
     }
 
     public function trans(TranslatorInterface $translator, string $locale = null): string
@@ -40,10 +42,10 @@ class AbsoluteDateTranslatable implements TranslatableInterface
 
         $key = implode('.', [$locale, $this->dateType, $this->pattern]);
         if (!isset(self::$formatters[$key])) {
-            self::$formatters[$key] = new \IntlDateFormatter(
+            self::$formatters[$key] = new IntlDateFormatter(
                 $locale,
                 $this->dateType,
-                \IntlDateFormatter::NONE,
+                IntlDateFormatter::NONE,
                 $this->timezone,
                 null,
                 $this->pattern
