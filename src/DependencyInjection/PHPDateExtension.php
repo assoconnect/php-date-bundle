@@ -34,7 +34,7 @@ class PHPDateExtension extends Extension
         // Loading config.yml file
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
+            new FileLocator(__DIR__ . '/../../config')
         );
         $loader->load('services.yaml');
     }
