@@ -66,7 +66,7 @@ class AbsoluteDateNormalizerTest extends TestCase
         self::assertEquals(
             new AbsoluteDate('2016-01-01'),
             $this->normalizer->denormalize('2016.01.01', AbsoluteDate::class, null, [
-                AbsoluteDateNormalizer::FORMAT_KEY => 'Y.m.d|'
+                AbsoluteDateNormalizer::FORMAT_KEY => 'Y.m.d|',
             ])
         );
     }
@@ -81,7 +81,7 @@ class AbsoluteDateNormalizerTest extends TestCase
     {
         $this->expectException(NotNormalizableValueException::class);
         $this->normalizer->denormalize('2016/01/01', AbsoluteDate::class, null, [
-            AbsoluteDateNormalizer::FORMAT_KEY => 'Y-m-d|'
+            AbsoluteDateNormalizer::FORMAT_KEY => 'Y-m-d|',
         ]);
     }
 }

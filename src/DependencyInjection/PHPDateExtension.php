@@ -22,7 +22,7 @@ class PHPDateExtension extends Extension
                 'mapping_types' => [
                     'absolute_date' => 'string',
                 ],
-            ]
+            ],
         ]);
     }
 
