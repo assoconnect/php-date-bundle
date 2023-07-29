@@ -22,7 +22,7 @@
         "ext-intl": "*",
         "php": "^7.4|^8.0",
         "symfony/framework-bundle": "^4.2|^5.0",
-        "assoconnect/php-date": "^2.8",
+        "assoconnect/php-date": "^2.11",
         "doctrine/dbal": "^2.10|^3.0",
         "symfony/serializer": "^5.0",
         "twig/twig": "^3"
