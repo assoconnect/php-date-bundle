@@ -1,6 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Method AssoConnect\\\\PHPDateBundle\\\\Translatable\\\\AbsoluteDateTranslatable\\:\\:trans\\(\\) should return string but returns string\\|true\\.$#"
-			count: 1
-			path: src/Translatable/AbsoluteDateTranslatable.php
