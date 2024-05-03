@@ -7,7 +7,6 @@ namespace AssoConnect\PHPDateBundle\Normalizer;
 use AssoConnect\PHPDate\AbsoluteDate;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
@@ -15,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
  * Normalizes an instance of {@see AbsoluteDate} to a date string.
  * Denormalizes a date string to an instance of {@see AbsoluteDate}.
  */
-class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterface, CacheableSupportsMethodInterface
+class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     public const FORMAT_KEY = 'datetime_format';
 
@@ -42,7 +41,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, string $format = null): bool
+    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
         return $data instanceof AbsoluteDate;
     }
@@ -67,13 +66,15 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
     /**
      * {@inheritdoc}
      */
-    public function supportsDenormalization($data, string $type, string $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $content = []): bool
     {
         return AbsoluteDate::class === $type;
     }
 
-    public function hasCacheableSupportsMethod(): bool
+    public function getSupportedTypes(?string $format): array
     {
-        return __CLASS__ === \get_class($this);
+        return [
+            get_class($this) => true,
+        ];
     }
 }
