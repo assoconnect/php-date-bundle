@@ -40,6 +40,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
+     * @param mixed[] $context
      */
     public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
@@ -65,16 +66,22 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
+     * @param mixed[] $context
      */
-    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $content = []): bool
-    {
+    public function supportsDenormalization(
+        mixed $data,
+        string $type,
+        ?string $format = null,
+        array $content = []
+    ): bool {
         return AbsoluteDate::class === $type;
     }
 
+    /**
+     * @return array{string: bool}
+     */
     public function getSupportedTypes(?string $format): array
     {
-        return [
-            get_class($this) => true,
-        ];
+        return [get_class($this) => true];
     }
 }
