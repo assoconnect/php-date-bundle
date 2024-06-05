@@ -66,19 +66,19 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
-     * @param mixed[] $context
+     * @param mixed[] $content
      */
     public function supportsDenormalization(
         mixed $data,
         string $type,
         ?string $format = null,
-        array $content = []
+        array $context = []
     ): bool {
         return AbsoluteDate::class === $type;
     }
 
     /**
-     * @return array{string: bool}
+     * @return non-empty-array<class-string<AssoConnect\PHPDateBundle\Normalizer\AbsoluteDateNormalizer>, true>
      */
     public function getSupportedTypes(?string $format): array
     {
