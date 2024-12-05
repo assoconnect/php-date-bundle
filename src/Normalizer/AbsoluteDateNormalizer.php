@@ -82,6 +82,6 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
      */
     public function getSupportedTypes(?string $format): array
     {
-        return [get_class($this) => true];
+        return ['*' => false];
     }
 }
