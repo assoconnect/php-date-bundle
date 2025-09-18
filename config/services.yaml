@@ -21,3 +21,7 @@ services:
 
   AssoConnect\PHPDateBundle\Validator\:
     resource: "../src/Validator/*"
+
+  AssoConnect\PHPDateBundle\ThirdParty\Symfony\HttpKernel\Controller\ArgumentResolver\AbsoluteDateValueResolver:
+    tags:
+      - { name: 'controller.argument_value_resolver', priority: 150 }
