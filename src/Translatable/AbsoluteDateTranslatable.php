@@ -54,7 +54,11 @@ class AbsoluteDateTranslatable implements TranslatableInterface
             if (false !== strpos($locale, '_US')) {
                 //A more used format
                 $pattern = self::$formatters[$key]->getPattern();
-                $pattern = str_replace(['yy', 'M', 'd'], ['y', 'MM', 'dd'], $pattern);
+                $pattern = str_replace(
+                    ['yy', 'M', 'd'],
+                    ['y', 'MM', 'dd'],
+                    $pattern !== false ? $pattern : AbsoluteDate::DEFAULT_DATE_FORMAT
+                );
                 self::$formatters[$key]->setPattern($pattern);
             }
         }
