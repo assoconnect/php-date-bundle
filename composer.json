@@ -17,7 +17,8 @@
         "symfony/contracts": "^2.4",
         "symfony/translation": "^6.0|^7.0",
         "assoconnect/php-quality-config": "^1.9",
-        "assoconnect/validator-bundle": "^2.19"
+        "assoconnect/validator-bundle": "^2.19",
+        "rector/rector": "^1.2"
     },
     "require": {
         "ext-intl": "*",
