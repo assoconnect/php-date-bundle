@@ -28,7 +28,7 @@
         "doctrine/dbal": "^2.10|^3.0",
         "symfony/serializer": "^6.0|^7.0",
         "twig/twig": "^3",
-        "symfony/clock": "^7.3"
+        "symfony/clock": "^6.4|^7.3"
     },
     "config": {
         "allow-plugins": {
