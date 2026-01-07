@@ -34,7 +34,7 @@ class AbsoluteDateTranslatable implements TranslatableInterface
         $this->timezone = new DateTimeZone('UTC');
     }
 
-    public function trans(TranslatorInterface $translator, string $locale = null): string
+    public function trans(TranslatorInterface $translator, ?string $locale = null): string
     {
         if (null === $locale) {
             $locale = $translator->getLocale();

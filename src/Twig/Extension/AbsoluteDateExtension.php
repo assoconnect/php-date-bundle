@@ -26,7 +26,7 @@ class AbsoluteDateExtension extends AbstractExtension
         ];
     }
 
-    public function formatAbsoluteDate(AbsoluteDate $date, string $locale = null): string
+    public function formatAbsoluteDate(AbsoluteDate $date, ?string $locale = null): string
     {
         return (new AbsoluteDateTranslatable($date))->trans($this->translator, $locale);
     }

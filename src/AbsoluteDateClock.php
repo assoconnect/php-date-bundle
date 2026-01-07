@@ -17,7 +17,7 @@ class AbsoluteDateClock
     /**
      * @throws \DateMalformedStringException
      */
-    public static function relative(string $relative = 'now', \DateTimeZone $timezone = null): AbsoluteDate
+    public static function relative(string $relative = 'now', ?\DateTimeZone $timezone = null): AbsoluteDate
     {
         return AbsoluteDate::createInTimezone($timezone ?? new \DateTimeZone('UTC'), new DatePoint($relative));
     }
