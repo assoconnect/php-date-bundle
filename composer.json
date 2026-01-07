@@ -21,7 +21,7 @@
     },
     "require": {
         "ext-intl": "*",
-        "php": "^7.4|^8.0",
+        "php": "^8.3",
         "symfony/framework-bundle": "^6.0|^7.0",
         "assoconnect/php-date": "^2.11",
         "doctrine/dbal": "^2.10|^3.0",
