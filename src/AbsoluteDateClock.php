@@ -9,7 +9,7 @@ use Symfony\Component\Clock\DatePoint;
 
 class AbsoluteDateClock
 {
-    public static function now(\DateTimeZone $timeZone): AbsoluteDate
+    public static function now(\DateTimeZone $timeZone = null): AbsoluteDate
     {
         return self::relative('now', $timeZone);
     }

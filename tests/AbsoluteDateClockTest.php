@@ -25,6 +25,14 @@ class AbsoluteDateClockTest extends TestCase
         );
     }
 
+    public function testNowWithoutDateTimeZone(): void
+    {
+        self::assertEquals(
+            '2025-03-12',
+            AbsoluteDateClock::now()
+        );
+    }
+
     public function testRelative(): void
     {
         self::assertEquals(
