@@ -24,9 +24,9 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
      * @param mixed[] $context
      * @throws InvalidArgumentException
      */
-    public function normalize($object, string $format = null, array $context = []): string
+    public function normalize(mixed $data, ?string $format = null, array $context = []): string
     {
-        if (!$object instanceof AbsoluteDate) {
+        if (!$data instanceof AbsoluteDate) {
             throw new InvalidArgumentException(sprintf(
                 'The object must be an instance of "%s".',
                 AbsoluteDate::class
@@ -35,14 +35,14 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
         $dateTimeFormat = $context[self::FORMAT_KEY] ?? AbsoluteDate::DEFAULT_DATE_FORMAT;
 
-        return $object->format($dateTimeFormat);
+        return $data->format($dateTimeFormat);
     }
 
     /**
      * {@inheritdoc}
      * @param mixed[] $context
      */
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof AbsoluteDate;
     }
@@ -53,7 +53,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
      * @param mixed[] $context
      * @throws NotNormalizableValueException
      */
-    public function denormalize($data, string $type, string $format = null, array $context = []): ?AbsoluteDate
+    public function denormalize($data, string $type, ?string $format = null, array $context = []): ?AbsoluteDate
     {
         $dateTimeFormat = $context[self::FORMAT_KEY] ?? AbsoluteDate::DEFAULT_DATE_FORMAT;
 

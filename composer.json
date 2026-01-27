@@ -15,19 +15,19 @@
     },
     "require-dev": {
         "symfony/contracts": "^2.4",
-        "symfony/translation": "^6.0|^7.0",
+        "symfony/translation": "^7.0",
         "assoconnect/php-quality-config": "^1.16",
         "assoconnect/validator-bundle": "^2.19"
     },
     "require": {
         "ext-intl": "*",
-        "php": "^7.4|^8.0",
-        "symfony/framework-bundle": "^6.0|^7.0",
+        "php": "^8.3",
+        "symfony/framework-bundle": "^7.0",
         "assoconnect/php-date": "^2.11",
         "doctrine/dbal": "^2.10|^3.0",
-        "symfony/serializer": "^6.0|^7.0",
+        "symfony/serializer": "^7.0",
         "twig/twig": "^3",
-        "symfony/clock": "^6.4|^7.3"
+        "symfony/clock": "^7.3"
     },
     "config": {
         "allow-plugins": {
