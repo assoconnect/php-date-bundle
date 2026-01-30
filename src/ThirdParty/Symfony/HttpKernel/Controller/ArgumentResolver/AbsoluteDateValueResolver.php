@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class AbsoluteDateValueResolver implements ValueResolverInterface
 {
     /**
-     * @return array<AbsoluteDate>
+     * @return list<AbsoluteDate>
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {

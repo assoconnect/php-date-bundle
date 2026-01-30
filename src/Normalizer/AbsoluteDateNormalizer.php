@@ -6,9 +6,10 @@ namespace AssoConnect\PHPDateBundle\Normalizer;
 
 use AssoConnect\PHPDate\AbsoluteDate;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
-use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
+use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Throwable;
 
 /**
  * Normalizes an instance of {@see AbsoluteDate} to a date string.
@@ -40,7 +41,6 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
-     * @param mixed[] $context
      */
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
@@ -49,18 +49,19 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
-     *
-     * @param mixed[] $context
-     * @throws NotNormalizableValueException
      */
-    public function denormalize($data, string $type, ?string $format = null, array $context = []): ?AbsoluteDate
+    public function denormalize($data, string $type, ?string $format = null, array $context = []): AbsoluteDate
     {
+        if ('' === $data || null === $data) {
+            throw new UnexpectedValueException();
+        }
+
         $dateTimeFormat = $context[self::FORMAT_KEY] ?? AbsoluteDate::DEFAULT_DATE_FORMAT;
 
         try {
-            return '' === $data || null === $data ? null : new AbsoluteDate($data, $dateTimeFormat);
-        } catch (\Exception $e) {
-            throw new NotNormalizableValueException($e->getMessage(), $e->getCode(), $e);
+            return new AbsoluteDate($data, $dateTimeFormat);
+        } catch (Throwable $e) {
+            throw new UnexpectedValueException(previous: $e);
         }
     }
 
@@ -77,11 +78,8 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
         return AbsoluteDate::class === $type;
     }
 
-    /**
-     * @return array<'*', bool>
-     */
     public function getSupportedTypes(?string $format): array
     {
-        return ['*' => false];
+        return [AbsoluteDate::class => true];
     }
 }
