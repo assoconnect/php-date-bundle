@@ -8,7 +8,6 @@ use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\PHPDateBundle\Normalizer\AbsoluteDateNormalizer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
-use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 class AbsoluteDateNormalizerTest extends TestCase
@@ -79,7 +78,7 @@ class AbsoluteDateNormalizerTest extends TestCase
 
     public function testDenormalizeFormatMismatchThrowsException(): void
     {
-        $this->expectException(NotNormalizableValueException::class);
+        $this->expectException(UnexpectedValueException::class);
         $this->normalizer->denormalize('2016/01/01', AbsoluteDate::class, null, [
             AbsoluteDateNormalizer::FORMAT_KEY => 'Y-m-d|',
         ]);
