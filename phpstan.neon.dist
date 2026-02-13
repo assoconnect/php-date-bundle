@@ -10,3 +10,4 @@ parameters:
 
 includes:
     - vendor/assoconnect/php-quality-config/phpstan.extension.neon
+    - phpstan-baseline.neon

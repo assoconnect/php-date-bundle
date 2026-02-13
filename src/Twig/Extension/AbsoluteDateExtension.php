@@ -19,6 +19,7 @@ class AbsoluteDateExtension extends AbstractExtension
         $this->translator = $translator;
     }
 
+    /** @return list<TwigFilter> */
     public function getFilters(): array
     {
         return [
