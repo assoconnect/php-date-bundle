@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Return type \(AssoConnect\\PHPDate\\AbsoluteDate\) of method AssoConnect\\PHPDateBundle\\Normalizer\\AbsoluteDateNormalizer\:\:denormalize\(\) should be covariant with return type \(\(\$type is class\-string\<object\> \? object \: mixed\)\) of method Symfony\\Component\\Serializer\\Normalizer\\DenormalizerInterface\:\:denormalize\(\)$#'
+			identifier: method.childReturnType
+			count: 1
+			path: src/Normalizer/AbsoluteDateNormalizer.php
