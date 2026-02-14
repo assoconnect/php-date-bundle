@@ -18,7 +18,7 @@ class DateTimeZoneProviderTest extends FieldConstraintsSetProviderTestCase
         return new DateTimeZoneProvider();
     }
 
-    public function getConstraintsForTypeProvider(): iterable
+    public static function getConstraintsForTypeProvider(): iterable
     {
         yield [
             ['type' => DateTimeZoneType::NAME],

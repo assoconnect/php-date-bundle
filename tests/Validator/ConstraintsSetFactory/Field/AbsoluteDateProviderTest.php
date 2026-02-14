@@ -18,7 +18,7 @@ class AbsoluteDateProviderTest extends FieldConstraintsSetProviderTestCase
         return new AbsoluteDateProvider();
     }
 
-    public function getConstraintsForTypeProvider(): iterable
+    public static function getConstraintsForTypeProvider(): iterable
     {
         yield [
             ['type' => AbsoluteDateType::NAME],
