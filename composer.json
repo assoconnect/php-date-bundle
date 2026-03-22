@@ -16,7 +16,7 @@
     "require-dev": {
         "symfony/contracts": "^2.4",
         "symfony/translation": "^7.0",
-        "assoconnect/php-quality-config": "^2",
+        "assoconnect/php-quality-config": "^2.2",
         "assoconnect/validator-bundle": "^2.39.2"
     },
     "require": {

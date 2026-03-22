@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 use function date_default_timezone_set;
 
-class DateTest extends TestCase
+class AbsoluteDateTypeTest extends TestCase
 {
     /** @var AbstractPlatform|MockObject */
     protected AbstractPlatform $platform;
