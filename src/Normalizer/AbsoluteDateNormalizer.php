@@ -41,6 +41,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
+     * @param array<string, mixed> $context
      */
     public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
@@ -49,6 +50,7 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
 
     /**
      * {@inheritdoc}
+     * @param array<string, mixed> $context
      */
     public function denormalize($data, string $type, ?string $format = null, array $context = []): AbsoluteDate
     {
