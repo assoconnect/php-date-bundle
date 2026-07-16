@@ -6,6 +6,7 @@ namespace AssoConnect\PHPDateBundle\Doctrine\DBAL\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Exception\InvalidType;
 use Doctrine\DBAL\Types\Type;
 
 class DateTimeZoneType extends Type
@@ -15,7 +16,7 @@ class DateTimeZoneType extends Type
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         $fieldDeclaration['length'] = 30;
-        return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
+        return $platform->getStringTypeDeclarationSQL($fieldDeclaration);
     }
 
     public function getName(): string
@@ -38,7 +39,7 @@ class DateTimeZoneType extends Type
             return $value->getName();
         }
 
-        throw ConversionException::conversionFailedInvalidType($value, $this->getName(), ['null', 'DateTimeZone']);
+        throw $this->createInvalidTypeException($value);
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?\DateTimeZone
@@ -48,5 +49,21 @@ class DateTimeZoneType extends Type
         }
 
         return new \DateTimeZone($value);
+    }
+
+    /**
+     * DBAL 4 replaced the ConversionException static factories with dedicated exception classes.
+     * The runtime conditional below can be inlined once DBAL 3 support is dropped.
+     * Excluded from coverage: only one branch can run for a given installed DBAL major.
+     *
+     * @codeCoverageIgnore
+     */
+    private function createInvalidTypeException(mixed $value): ConversionException
+    {
+        if (class_exists(InvalidType::class)) {
+            return InvalidType::new($value, self::NAME, ['null', 'DateTimeZone']);
+        }
+
+        return ConversionException::conversionFailedInvalidType($value, self::NAME, ['null', 'DateTimeZone']);
     }
 }
