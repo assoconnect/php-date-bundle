@@ -14,7 +14,7 @@ class DateTimeZoneTypeTest extends TestCase
     public function testConversionWorks(): void
     {
         $type = new DateTimeZoneType();
-        $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+        $platform = self::createStub(AbstractPlatform::class);
 
         // With null
         self::assertNull($type->convertToDatabaseValue(null, $platform));
@@ -32,7 +32,7 @@ class DateTimeZoneTypeTest extends TestCase
     public function testConversionToDatabaseThrows(): void
     {
         $type = new DateTimeZoneType();
-        $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+        $platform = self::createStub(AbstractPlatform::class);
 
         $this->expectException(ConversionException::class);
         $type->convertToDatabaseValue('hello', $platform);

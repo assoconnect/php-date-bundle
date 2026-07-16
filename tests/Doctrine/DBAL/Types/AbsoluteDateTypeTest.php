@@ -9,22 +9,25 @@ use AssoConnect\PHPDateBundle\Doctrine\DBAL\Types\AbsoluteDateType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 use function date_default_timezone_set;
 
 class AbsoluteDateTypeTest extends TestCase
 {
-    /** @var AbstractPlatform|MockObject */
-    protected AbstractPlatform $platform;
+    protected AbstractPlatform&Stub $platform;
 
     protected Type $type;
 
     protected function setUp(): void
     {
         $this->type = new AbsoluteDateType();
-        $this->platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+        $this->platform = self::createStub(AbstractPlatform::class);
+        if (method_exists(AbstractPlatform::class, 'getDateFormatString')) {
+            $this->platform->method('getDateFormatString')->willReturn('Y-m-d');
+        }
     }
 
     protected function tearDown(): void
@@ -34,9 +37,8 @@ class AbsoluteDateTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     *
-     * @dataProvider invalidPHPValuesProvider
      */
+    #[DataProvider('invalidPHPValuesProvider')]
     public function testInvalidTypeConversionToDatabaseValue($value): void
     {
         $this->expectException(ConversionException::class);
