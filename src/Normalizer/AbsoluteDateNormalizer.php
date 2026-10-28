@@ -6,7 +6,7 @@ namespace AssoConnect\PHPDateBundle\Normalizer;
 
 use AssoConnect\PHPDate\AbsoluteDate;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
-use Symfony\Component\Serializer\Exception\UnexpectedValueException;
+use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Throwable;
@@ -52,16 +52,29 @@ class AbsoluteDateNormalizer implements NormalizerInterface, DenormalizerInterfa
      */
     public function denormalize($data, string $type, ?string $format = null, array $context = []): AbsoluteDate
     {
-        if ('' === $data || null === $data) {
-            throw new UnexpectedValueException();
-        }
-
         $dateTimeFormat = $context[self::FORMAT_KEY] ?? AbsoluteDate::DEFAULT_DATE_FORMAT;
+
+        if ('' === $data || null === $data) {
+            throw NotNormalizableValueException::createForUnexpectedDataType(
+                sprintf('The data is empty, a date in format "%s" is expected.', $dateTimeFormat),
+                $data,
+                [AbsoluteDate::class],
+                $context['deserialization_path'] ?? null,
+                true,
+            );
+        }
 
         try {
             return new AbsoluteDate($data, $dateTimeFormat);
         } catch (Throwable $e) {
-            throw new UnexpectedValueException(previous: $e);
+            throw NotNormalizableValueException::createForUnexpectedDataType(
+                sprintf('The data is not a valid date in format "%s".', $dateTimeFormat),
+                $data,
+                [AbsoluteDate::class],
+                $context['deserialization_path'] ?? null,
+                true,
+                previous: $e,
+            );
         }
     }
 

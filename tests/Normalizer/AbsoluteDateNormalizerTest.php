@@ -6,8 +6,10 @@ namespace AssoConnect\PHPDateBundle\Tests\Normalizer;
 
 use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\PHPDateBundle\Normalizer\AbsoluteDateNormalizer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
+use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 class AbsoluteDateNormalizerTest extends TestCase
@@ -70,15 +72,48 @@ class AbsoluteDateNormalizerTest extends TestCase
         );
     }
 
-    public function testDenormalizeInvalidDataThrowsException(): void
+    /**
+     * @return iterable<string, array{mixed, string}>
+     */
+    public static function provideNotNormalizableData(): iterable
     {
-        $this->expectException(UnexpectedValueException::class);
-        $this->normalizer->denormalize('invalid date', AbsoluteDate::class);
+        yield 'null' => [null, 'The data is empty, a date in format "Y-m-d" is expected.'];
+        yield 'empty string' => ['', 'The data is empty, a date in format "Y-m-d" is expected.'];
+        yield 'invalid date' => ['invalid date', 'The data is not a valid date in format "Y-m-d".'];
+    }
+
+    #[DataProvider('provideNotNormalizableData')]
+    public function testDenormalizeNotNormalizableDataThrowsException(mixed $data, string $expectedMessage): void
+    {
+        try {
+            $this->normalizer->denormalize($data, AbsoluteDate::class, null, [
+                'deserialization_path' => 'startDate',
+            ]);
+            self::fail('A NotNormalizableValueException was expected.');
+        } catch (NotNormalizableValueException $exception) {
+            self::assertInstanceOf(UnexpectedValueException::class, $exception);
+            self::assertSame($expectedMessage, $exception->getMessage());
+            self::assertSame([AbsoluteDate::class], $exception->getExpectedTypes());
+            self::assertSame('startDate', $exception->getPath());
+            self::assertTrue($exception->canUseMessageForUser());
+        }
+    }
+
+    public function testDenormalizeInvalidDataChainsThePreviousException(): void
+    {
+        try {
+            $this->normalizer->denormalize('invalid date', AbsoluteDate::class);
+            self::fail('A NotNormalizableValueException was expected.');
+        } catch (NotNormalizableValueException $exception) {
+            self::assertNotNull($exception->getPrevious());
+            self::assertNull($exception->getPath());
+        }
     }
 
     public function testDenormalizeFormatMismatchThrowsException(): void
     {
-        $this->expectException(UnexpectedValueException::class);
+        $this->expectException(NotNormalizableValueException::class);
+        $this->expectExceptionMessage('The data is not a valid date in format "Y-m-d|".');
         $this->normalizer->denormalize('2016/01/01', AbsoluteDate::class, null, [
             AbsoluteDateNormalizer::FORMAT_KEY => 'Y-m-d|',
         ]);
