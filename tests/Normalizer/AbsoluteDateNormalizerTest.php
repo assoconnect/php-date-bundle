@@ -10,7 +10,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
-use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 
 class AbsoluteDateNormalizerTest extends TestCase
 {
@@ -91,7 +90,6 @@ class AbsoluteDateNormalizerTest extends TestCase
             ]);
             self::fail('A NotNormalizableValueException was expected.');
         } catch (NotNormalizableValueException $exception) {
-            self::assertInstanceOf(UnexpectedValueException::class, $exception);
             self::assertSame($expectedMessage, $exception->getMessage());
             self::assertSame([AbsoluteDate::class], $exception->getExpectedTypes());
             self::assertSame('startDate', $exception->getPath());
