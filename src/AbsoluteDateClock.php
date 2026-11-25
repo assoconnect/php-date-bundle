@@ -17,6 +17,8 @@ class AbsoluteDateClock
 
     public static function relative(string $relative = 'now', ?DateTimeZone $timezone = null): AbsoluteDate
     {
-        return AbsoluteDate::createInTimezone($timezone ?? new DateTimeZone('UTC'), new DatePoint($relative));
+        $timezone ??= new DateTimeZone('UTC');
+
+        return AbsoluteDate::createInTimezone($timezone, new DatePoint($relative, $timezone));
     }
 }
